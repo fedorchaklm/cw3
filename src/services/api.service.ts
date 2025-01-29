@@ -1,7 +1,7 @@
 import axios from "axios";
 import {LoginDataType} from "../models/LoginDataType.ts";
 import {IUserWithTokens} from "../models/IUserWithTokens.ts";
-import {saveToLocalStorage} from "../helpers/localStorageHelpers.ts";
+import {retriveLocalStorage, saveToLocalStorage} from "../helpers/localStorageHelpers.ts";
 
 // export const apiService = {
 //     getAll: async <T>(url: string): Promise<Array<T>> => {
@@ -30,11 +30,11 @@ export const authService = {
     }
 }
 
-// axiosInstance.interceptors.request.use((request) => {
-//     if (request.method?.toUpperCase() === "GET") {
-//         request.headers.authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
-//     }
-//     return request;
-// })
+axiosInstance.interceptors.request.use((request) => {
+    if (request.method?.toUpperCase() === "GET") {
+        request.headers.authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
+    }
+    return request;
+})
 
 
