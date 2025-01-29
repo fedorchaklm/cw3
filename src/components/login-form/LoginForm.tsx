@@ -3,21 +3,17 @@ import './LoginForm.css';
 import {joiResolver} from "@hookform/resolvers/joi";
 import {loginSchema} from "../../validation/loginSchema.ts";
 import {useNavigate} from "react-router";
-
-
-type LoginData = {
-    username: string;
-    password: string;
-}
+import {LoginDataType} from "../../models/LoginDataType.ts";
+import {loginService} from "../../services/api.service.ts";
 
 export const LoginForm = () => {
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginData>({
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginDataType>({
         mode: 'all', resolver: joiResolver(loginSchema)
     });
     const navigate = useNavigate();
 
-    const customSubmit = (data: LoginData) => {
-        console.log(data);
+    const customSubmit = async (data: LoginDataType) => {
+        await loginService.login(data);
         navigate('/');
     }
 
