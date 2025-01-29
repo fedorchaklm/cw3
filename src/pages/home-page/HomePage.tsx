@@ -4,18 +4,18 @@ import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
 import {Logo} from "../../components/logo/Logo.tsx";
 
 export const HomePage = () => {
-    const {user} = useAppSelector(({userSlice}) => userSlice);
+    const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);
 
-    if (!user) return <p>You need to authenticate <Link className='text-gray-500 hover:underline'
+    if (!currentUser) return <p>You need to authenticate <Link className='text-gray-500 hover:underline'
                                                         to='/login'>Login</Link></p>;
 
     return (
         <>
-            {user &&
+            {currentUser &&
                 <div>
                     <div className='flex justify-between px-4 bg-black text-white w-full'>
                         <Menu/>
-                        <Logo img={user.image} alt={user.lastName}/>
+                        <Logo img={currentUser.image} alt={currentUser.lastName}/>
                     </div>
                     <Outlet/>
                 </div>

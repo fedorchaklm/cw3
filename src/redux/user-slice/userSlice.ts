@@ -1,10 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IUserWithTokens} from "../../models/IUserWithTokens.ts";
-import {authService} from "../../services/api.service.ts";
-import {LoginDataType} from "../../models/LoginDataType.ts";
+import IUser from "../../models/IUser.ts";
+import {userService} from "../../services/api.service.ts";
 
 type userSliceType = {
-    user: IUserWithTokens | null;
+    user: IUser | null;
 }
 
 const userSliceInitialState: userSliceType = {
@@ -12,9 +11,9 @@ const userSliceInitialState: userSliceType = {
 }
 
 const loadUser = createAsyncThunk('userSlice/loadUser',
-    async (loginData: LoginDataType, thunkAPI) => {
+    async (id: string, thunkAPI) => {
         try {
-            const user = await authService.login(loginData);
+            const user = await userService.getUserById(id);
             return thunkAPI.fulfillWithValue(user)
         } catch (e) {
             return thunkAPI.rejectWithValue(e)

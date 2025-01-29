@@ -5,7 +5,7 @@ import {loginSchema} from "../../validation/loginSchema.ts";
 import {useNavigate} from "react-router";
 import {LoginDataType} from "../../models/LoginDataType.ts";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
-import {userSliceActions} from "../../redux/user-slice/userSlice.ts";
+import {currentUserSliceActions} from "../../redux/current-user-slice/currentUserSlice.ts";
 import {FC} from "react";
 
 export const LoginForm: FC = () => {
@@ -16,7 +16,7 @@ export const LoginForm: FC = () => {
     const dispatch = useAppDispatch();
 
     const customSubmit = async (data: LoginDataType) => {
-        dispatch(userSliceActions.loadUser(data))
+        dispatch(currentUserSliceActions.loadUser(data))
         navigate('/');
     }
 
