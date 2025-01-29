@@ -1,6 +1,7 @@
 import axios from "axios";
 import {LoginDataType} from "../models/LoginDataType.ts";
 import {IUserWithTokens} from "../models/IUserWithTokens.ts";
+import {saveToLocalStorage} from "../helpers/localStorageHelpers.ts";
 
 // export const apiService = {
 //     getAll: async <T>(url: string): Promise<Array<T>> => {
@@ -20,10 +21,20 @@ const axiosInstance = axios.create({
     headers: {"Content-Type": "application/json"},
 });
 
-export const loginService = {
+export const authService = {
     login: async (loginData: LoginDataType): Promise<IUserWithTokens> => {
-        const {data} = await axiosInstance.post<IUserWithTokens>(`auth/login`, loginData);
-        console.log(data);
-        return data;
+        const {data: userWithToken} = await axiosInstance.post<IUserWithTokens>(`auth/login`, loginData);
+        console.log(userWithToken);
+        saveToLocalStorage('user', userWithToken);
+        return userWithToken;
     }
 }
+
+// axiosInstance.interceptors.request.use((request) => {
+//     if (request.method?.toUpperCase() === "GET") {
+//         request.headers.authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
+//     }
+//     return request;
+// })
+
+
