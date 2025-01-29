@@ -7,9 +7,13 @@ import {UsersPage} from "../pages/users-page/UsersPage.tsx";
 export const routes = createBrowserRouter([
     {
         path: '/', element: <MainLayout/>, children: [
-            {path: '', element: <HomePage/>},
-            {path: '/login', element: <LoginPage/>},
-            {path: '/users', element: <UsersPage/>},
+            {
+                path: '', element: <HomePage/>, children: [
+                    {path: '/login', element: <LoginPage/>},
+                    {path: '/users', element: <UsersPage/>},
+
+                ]
+            },
         ]
     }
 ])

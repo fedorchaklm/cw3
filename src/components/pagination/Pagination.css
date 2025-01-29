@@ -1,0 +1,7 @@
+.paginationBtn {
+    @apply px-2 py-2 bg-black text-white text-lg leading-tight rounded-lg;
+}
+
+.disabledPaginationBtn {
+    @apply px-2 py-2 bg-black text-white text-lg leading-tight rounded-lg opacity-50 cursor-not-allowed;
+}

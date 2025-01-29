@@ -6,8 +6,9 @@ import {useNavigate} from "react-router";
 import {LoginDataType} from "../../models/LoginDataType.ts";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {userSliceActions} from "../../redux/user-slice/userSlice.ts";
+import {FC} from "react";
 
-export const LoginForm = () => {
+export const LoginForm: FC = () => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginDataType>({
         mode: 'all', resolver: joiResolver(loginSchema)
     });

@@ -2,6 +2,8 @@ import axios from "axios";
 import {LoginDataType} from "../models/LoginDataType.ts";
 import {IUserWithTokens} from "../models/IUserWithTokens.ts";
 import {retriveLocalStorage, saveToLocalStorage} from "../helpers/localStorageHelpers.ts";
+import IUser from "../models/IUser.ts";
+import {IUsersResponseModel} from "../models/IUsersResponseModel.ts";
 
 // export const apiService = {
 //     getAll: async <T>(url: string): Promise<Array<T>> => {
@@ -21,6 +23,13 @@ const axiosInstance = axios.create({
     headers: {"Content-Type": "application/json"},
 });
 
+axiosInstance.interceptors.request.use((request) => {
+    if (request.method?.toUpperCase() === "GET") {
+        request.headers.authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
+    }
+    return request;
+})
+
 export const authService = {
     login: async (loginData: LoginDataType): Promise<IUserWithTokens> => {
         const {data: userWithToken} = await axiosInstance.post<IUserWithTokens>(`auth/login`, loginData);
@@ -30,11 +39,19 @@ export const authService = {
     }
 }
 
-axiosInstance.interceptors.request.use((request) => {
-    if (request.method?.toUpperCase() === "GET") {
-        request.headers.authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
+export const userService = {
+    // getAll: async (): Promise<Array<IUser>> => {
+    //     const {data: {users}} = await axiosInstance.get<IUsersResponseModel>('/users');
+    //     console.log('>', users);
+    //     return users;
+    // },
+    getUsersByPage: async (page: number): Promise<Array<IUser>> => {
+        const limit = 30;
+        const skip = limit * page - limit;
+        const {data: {users}} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}`);
+        return users;
     }
-    return request;
-})
+}
+
 
 

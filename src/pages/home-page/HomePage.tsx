@@ -1,10 +1,10 @@
 import {Menu} from "../../components/menu/Menu.tsx";
-import {Link} from "react-router";
+import {Link, Outlet} from "react-router";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
+import {Logo} from "../../components/logo/Logo.tsx";
 
 export const HomePage = () => {
     const {user} = useAppSelector(({userSlice}) => userSlice);
-    console.log(user);
 
     if (!user) return <p>You need to authenticate <Link className='text-gray-500 hover:underline'
                                                         to='/login'>Login</Link></p>;
@@ -13,9 +13,11 @@ export const HomePage = () => {
         <>
             {user &&
                 <div>
-                <div className='flex justify-center bg-black text-white w-full'>
-                    <Menu/>
-                </div>
+                    <div className='flex justify-between px-4 bg-black text-white w-full'>
+                        <Menu/>
+                        <Logo img={user.image} alt={user.lastName}/>
+                    </div>
+                    <Outlet/>
                 </div>
             }
         </>
