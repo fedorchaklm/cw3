@@ -10,7 +10,7 @@ const userSliceInitialState: usersSliceType = {
     users: []
 }
 
-const loadUsers = createAsyncThunk('userSlice/loadUser',
+const loadUsers = createAsyncThunk('usersSlice/loadUser',
     async (page: number, thunkAPI) => {
         try {
             const users = await userService.getUsersByPage(page);

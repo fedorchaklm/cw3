@@ -7,8 +7,6 @@ export const UsersPage = () => {
     if (!user) return;
 
     return (
-        <>
-            <UsersList/>
-        </>
+        <UsersList/>
     )
 }

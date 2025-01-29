@@ -2,14 +2,13 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IUserWithTokens} from "../../models/IUserWithTokens.ts";
 import {authService} from "../../services/api.service.ts";
 import {LoginDataType} from "../../models/LoginDataType.ts";
-import {retriveLocalStorage} from "../../helpers/localStorageHelpers.ts";
 
 type userSliceType = {
     user: IUserWithTokens | null;
 }
 
 const userSliceInitialState: userSliceType = {
-    user: retriveLocalStorage<IUserWithTokens>('user')
+    user: null
 }
 
 const loadUser = createAsyncThunk('userSlice/loadUser',

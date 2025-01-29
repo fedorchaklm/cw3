@@ -20,7 +20,7 @@ export const UsersList: FC = () => {
 
     return (
         <div className='flex flex-col items-center gap-2 my-4'>
-            {users.map((user: IUser) => <User key={user.id} user={user}/>)}
+            {users && users.map((user: IUser) => <User key={user.id} user={user}/>)}
             <Pagination maxPages={7}/>
         </div>
     )
