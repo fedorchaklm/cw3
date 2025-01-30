@@ -23,6 +23,7 @@ export const UsersList: FC = () => {
     return (
         users === null ? <Loading/> :
             <div className='flex flex-col items-center gap-2 my-4'>
+                <h1 className='text-3xl'>Our users:</h1>
                 {users && users.users.map((user: IUser) => <User key={user.id} user={user}/>)}
                 <Pagination maxPages={getMaxPages(users.total, limitOfUsersByPage)}/>
             </div>

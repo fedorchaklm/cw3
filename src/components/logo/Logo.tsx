@@ -4,7 +4,7 @@ import './Logo.css';
 type LogoType = {
     img: string;
     alt: string;
-}
+};
 
 export const Logo: FC<LogoType> = ({img, alt}) => {
     return (

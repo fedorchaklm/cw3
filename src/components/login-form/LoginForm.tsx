@@ -18,7 +18,7 @@ export const LoginForm: FC = () => {
     const customSubmit = async (data: LoginDataType) => {
         dispatch(currentUserSliceActions.loadUser(data))
         navigate('/');
-    }
+    };
 
     return (
         <div className="flex flex-col items-center gap-4">
