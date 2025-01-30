@@ -49,7 +49,7 @@ export const userService = {
     getUsersByPage: async (page: number): Promise<IUsersResponseModel> => {
         const limit = limitOfUsersByPage;
         const skip = limit * page - limit;
-        const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}`);
+        const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}&limit=${limit}`);
         return data;
     },
     getUserById: async (id: string): Promise<IUser> => {

@@ -1,1 +1,1 @@
-export const limitOfUsersByPage = 30;
+export const limitOfUsersByPage = 10;
