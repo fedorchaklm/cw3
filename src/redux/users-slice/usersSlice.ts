@@ -1,14 +1,14 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import IUser from "../../models/IUser.ts";
 import {userService} from "../../services/api.service.ts";
+import {IUsersResponseModel} from "../../models/IUsersResponseModel.ts";
 
 type usersSliceType = {
-    users: Array<IUser>
-}
+    users: IUsersResponseModel | null
+};
 
 const userSliceInitialState: usersSliceType = {
-    users: []
-}
+    users: null
+};
 
 const loadUsers = createAsyncThunk('usersSlice/loadUser',
     async (page: number, thunkAPI) => {
@@ -19,7 +19,7 @@ const loadUsers = createAsyncThunk('usersSlice/loadUser',
         } catch (e) {
             return thunkAPI.rejectWithValue(e)
         }
-    })
+    });
 
 export const usersSlice = createSlice({
     name: 'usersSlice',
@@ -29,6 +29,6 @@ export const usersSlice = createSlice({
         builder.addCase(loadUsers.fulfilled, (state, action) => {
             state.users = action.payload;
         })
-})
+});
 
 export const usersSliceActions = {...usersSlice.actions, loadUsers};

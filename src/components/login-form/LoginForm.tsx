@@ -37,5 +37,5 @@ export const LoginForm: FC = () => {
                 </button>
             </form>
         </div>
-    )
+    );
 }

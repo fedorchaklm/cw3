@@ -4,5 +4,5 @@ export const UsersPage = () => {
 
     return (
         <UsersList/>
-    )
+    );
 }

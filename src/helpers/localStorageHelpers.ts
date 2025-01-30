@@ -1,7 +1,12 @@
-export const retriveLocalStorage = <T>(key: string) => {
+export const retrieveLocalStorage = <T>(key: string) => {
     const str = localStorage.getItem(key) || '';
-    const obj = JSON.parse(str);
-    return obj as T;
+    try {
+        const obj = JSON.parse(str);
+        return obj as T;
+    } catch (e) {
+        console.info(e);
+        return null;
+    }
 }
 
 export const saveToLocalStorage = (key: string, value: object | string | number) => {

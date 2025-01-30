@@ -20,4 +20,4 @@ export const loginSchema = Joi.object({
             // 'string.max': 'Password must be less than 10 characters',
             'string.required': 'Password is required',
         }),
-})
+});

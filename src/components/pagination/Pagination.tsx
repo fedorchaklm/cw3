@@ -30,5 +30,5 @@ export const Pagination: FC<PaginationType> = ({maxPages}) => {
                     onClick={handleOnClickNext}>next
             </button>
         </div>
-    )
+    );
 }

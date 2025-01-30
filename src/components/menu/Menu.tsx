@@ -14,5 +14,5 @@ export const Menu = () => {
                 <Link to='/recipes'>Recipes</Link>
             </li>
         </ul>
-    )
+    );
 }

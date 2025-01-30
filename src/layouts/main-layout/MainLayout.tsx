@@ -5,5 +5,5 @@ export const MainLayout = () => {
         <>
             <Outlet/>
         </>
-    )
+    );
 }

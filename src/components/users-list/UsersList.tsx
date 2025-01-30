@@ -6,6 +6,9 @@ import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {usersSliceActions} from "../../redux/users-slice/usersSlice.ts";
 import {Pagination} from "../pagination/Pagination.tsx";
 import {useSearchParams} from "react-router";
+import {getMaxPages} from "../../helpers/helpers.ts";
+import {Loading} from "../loading/Loading.tsx";
+import {limitOfUsersByPage} from "../../constants/constants.ts";
 
 export const UsersList: FC = () => {
     const {users} = useAppSelector(({usersSlice}) => usersSlice);
@@ -14,14 +17,14 @@ export const UsersList: FC = () => {
 
     useEffect(() => {
         const page = query.get('page') || '1';
-        dispatch(usersSliceActions.loadUsers(Number(page)))
+        dispatch(usersSliceActions.loadUsers(Number(page)));
     }, [query]);
 
-
     return (
-        <div className='flex flex-col items-center gap-2 my-4'>
-            {users && users.map((user: IUser) => <User key={user.id} user={user}/>)}
-            <Pagination maxPages={7}/>
-        </div>
-    )
+        users === null ? <Loading/> :
+            <div className='flex flex-col items-center gap-2 my-4'>
+                {users && users.users.map((user: IUser) => <User key={user.id} user={user}/>)}
+                <Pagination maxPages={getMaxPages(users.total, limitOfUsersByPage)}/>
+            </div>
+    );
 }

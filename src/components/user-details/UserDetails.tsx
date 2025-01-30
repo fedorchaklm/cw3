@@ -16,8 +16,8 @@ export const UserDetails = () => {
     }, [id]);
 
     return (
-        <>
+        <div>
             {user && user.username}
-        </>
-    )
+        </div>
+    );
 }

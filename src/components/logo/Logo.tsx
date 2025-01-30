@@ -8,8 +8,6 @@ type LogoType = {
 
 export const Logo: FC<LogoType> = ({img, alt}) => {
     return (
-        <>
-            <img className="logo" src={img} alt={alt} />
-        </>
-    )
+        <img className="logo" src={img} alt={alt}/>
+    );
 }

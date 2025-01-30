@@ -2,14 +2,15 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IUserWithTokens} from "../../models/IUserWithTokens.ts";
 import {authService} from "../../services/api.service.ts";
 import {LoginDataType} from "../../models/LoginDataType.ts";
+import {retrieveLocalStorage} from "../../helpers/localStorageHelpers.ts";
 
 type currentUserSliceType = {
     currentUser: IUserWithTokens | null;
-}
+};
 
 const currentUserSliceInitialState: currentUserSliceType = {
-    currentUser: null
-}
+    currentUser: retrieveLocalStorage('user'),
+};
 
 const loadUser = createAsyncThunk('currentUserSlice/loadUser',
     async (loginData: LoginDataType, thunkAPI) => {
@@ -19,7 +20,7 @@ const loadUser = createAsyncThunk('currentUserSlice/loadUser',
         } catch (e) {
             return thunkAPI.rejectWithValue(e)
         }
-    })
+    });
 
 export const currentUserSlice = createSlice({
     name: 'currentUserSlice',
@@ -29,6 +30,6 @@ export const currentUserSlice = createSlice({
         builder.addCase(loadUser.fulfilled, (state, action) => {
             state.currentUser = action.payload;
         })
-})
+});
 
 export const currentUserSliceActions = {...currentUserSlice.actions, loadUser};
