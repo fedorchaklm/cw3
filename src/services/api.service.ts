@@ -1,27 +1,10 @@
 import axios from "axios";
-import {LoginDataType} from "../models/LoginDataType.ts";
 import {IUserWithTokens} from "../models/IUserWithTokens.ts";
-import {retrieveLocalStorage, saveToLocalStorage} from "../helpers/localStorageHelpers.ts";
-import IUser from "../models/IUser.ts";
-import {IUsersResponseModel} from "../models/IUsersResponseModel.ts";
-import {limitOfRecipesPage, limitOfUsersByPage} from "../constants/constants.ts";
-import {IRecipesResponseModel} from "../models/IRecipesResponseModel.ts";
-import {IRecipe} from "../models/IRecipe.ts";
-
-// export const apiService = {
-//     getAll: async <T>(url: string): Promise<Array<T>> => {
-//         const response = await fetch(url);
-//         return await response.json();
-//     },
-//     login: async(url:string) => {
-//         const response = await fetch(url);
-//         return await response.json();
-//     }
-// }
+import {retrieveLocalStorage} from "../helpers/localStorageHelpers.ts";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
     baseURL: baseUrl,
     headers: {"Content-Type": "application/json"},
 });
@@ -33,43 +16,8 @@ axiosInstance.interceptors.request.use((request) => {
     return request;
 });
 
-export const authService = {
-    login: async (loginData: LoginDataType): Promise<IUserWithTokens> => {
-        const {data: userWithToken} = await axiosInstance.post<IUserWithTokens>(`auth/login`, loginData);
-        console.log(userWithToken);
-        saveToLocalStorage('user', userWithToken);
-        return userWithToken;
-    }
-};
 
-export const userService = {
-    // getAll: async (): Promise<Array<IUser>> => {
-    //     const {data: {users}} = await axiosInstance.get<IUsersResponseModel>('/users');
-    //     console.log('>', users);
-    //     return users;
-    // },
-    getUsersByPage: async (page: number): Promise<IUsersResponseModel> => {
-        const limit = limitOfUsersByPage;
-        const skip = limit * page - limit;
-        const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}&limit=${limit}`);
-        return data;
-    },
-    getUserById: async (id: string): Promise<IUser> => {
-        const {data: user} = await axiosInstance.get<IUser>(`/users/${id}`);
-        return user;
-    }
-};
 
-export const recipeService = {
-    getRecipesByPage: async (page: number): Promise<IRecipesResponseModel> => {
-        const limit = limitOfRecipesPage;
-        const skip = limit * page - limit;
-        const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes?skip=${skip}&limit=${limit}`);
-        return data;
-    },
-    getRecipeById: async (id: string): Promise<IRecipe> => {
-        const {data: user} = await axiosInstance.get<IRecipe>(`/recipes/${id}`);
-        return user;
-    }
-};
+
+
 

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import IUser from "../../models/IUser.ts";
-import {userService} from "../../services/api.service.ts";
+import {userService} from "../../services/user.api.service.ts";
 
 type userSliceType = {
     user: IUser | null;

@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IUserWithTokens} from "../../models/IUserWithTokens.ts";
-import {authService} from "../../services/api.service.ts";
 import {LoginDataType} from "../../models/LoginDataType.ts";
 import {retrieveLocalStorage} from "../../helpers/localStorageHelpers.ts";
+import {authService} from "../../services/auth.api.service.ts";
 
 type currentUserSliceType = {
     currentUser: IUserWithTokens | null;

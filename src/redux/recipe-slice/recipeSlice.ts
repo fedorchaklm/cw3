@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {recipeService} from "../../services/api.service.ts";
 import {IRecipe} from "../../models/IRecipe.ts";
+import {recipeService} from "../../services/recipe.api.service.ts";
 
 type recipeSliceType = {
     recipe: IRecipe | null;
