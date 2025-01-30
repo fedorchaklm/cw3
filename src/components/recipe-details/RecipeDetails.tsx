@@ -1,4 +1,4 @@
-import {useParams} from "react-router";
+import {Link, useParams} from "react-router";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {recipeSliceActions} from "../../redux/recipe-slice/recipeSlice.ts";
@@ -29,6 +29,7 @@ export const RecipeDetails = () => {
                 <p><b>Rating: </b> {recipe.rating}</p>
                 <p><b>Ingredients: </b> {recipe.ingredients}</p>
                 <p><b>instructions: </b> {recipe.instructions}</p>
+                <Link to={`/users/${recipe.userId}`} className='user'>About user</Link>
             </div>
     );
 }
