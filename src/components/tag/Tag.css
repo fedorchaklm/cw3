@@ -1,0 +1,11 @@
+.tagBtn {
+    @apply border-gray-500 border-2 px-0.5;
+}
+
+.tagBtn:hover {
+    @apply bg-gray-700 text-white ;
+}
+
+.active {
+    @apply bg-black text-white;
+}

@@ -1,5 +1,6 @@
 import {FC} from "react";
 import {useSearchParams} from "react-router";
+import './Tag.css';
 
 type TagType = {
     tag: string;
@@ -12,6 +13,6 @@ export const Tag: FC<TagType> = ({tag}) => {
     }
 
     return (
-        <button className='border-gray-500 border-2 px-0.5' onClick={handleOnClick}>#{tag}</button>
+        <button className={query.get('tag') === tag ? 'tagBtn active' : 'tagBtn'} onClick={handleOnClick}>#{tag}</button>
     );
 }
