@@ -9,7 +9,7 @@ import {Recipe} from "../recipe/Recipe.tsx";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {useSearchParams} from "react-router";
 import {recipesSliceActions} from "../../redux/recipes-slice/recipesSlice.ts";
-import {Tags} from "../tags/Tags.tsx";
+import {TagsList} from "../tags-list/TagsList.tsx";
 
 export const RecipesList: FC = () => {
     const {recipes} = useAppSelector(({recipesSlice}) => recipesSlice);
@@ -27,7 +27,7 @@ export const RecipesList: FC = () => {
                 <h1 className='text-3xl'>Our recipes:</h1>
                 {recipes.recipes.map((recipe: IRecipe) => <Recipe key={recipe.id} recipe={recipe}/>)}
                 <Pagination maxPages={getMaxPages(recipes.total, limitOfRecipesPage)}/>
-                <Tags/>
+                <TagsList/>
             </div>
     );
 }
