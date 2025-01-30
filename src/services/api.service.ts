@@ -6,6 +6,7 @@ import IUser from "../models/IUser.ts";
 import {IUsersResponseModel} from "../models/IUsersResponseModel.ts";
 import {limitOfRecipesPage, limitOfUsersByPage} from "../constants/constants.ts";
 import {IRecipesResponseModel} from "../models/IRecipesResponseModel.ts";
+import {IRecipe} from "../models/IRecipe.ts";
 
 // export const apiService = {
 //     getAll: async <T>(url: string): Promise<Array<T>> => {
@@ -66,5 +67,9 @@ export const recipeService = {
         const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes?skip=${skip}&limit=${limit}`);
         return data;
     },
+    getRecipeById: async (id: string): Promise<IRecipe> => {
+        const {data: user} = await axiosInstance.get<IRecipe>(`/recipes/${id}`);
+        return user;
+    }
 };
 

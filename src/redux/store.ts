@@ -3,6 +3,7 @@ import {usersSlice} from "./users-slice/usersSlice.ts";
 import {currentUserSlice} from "./current-user-slice/currentUserSlice.ts";
 import {userSlice} from "./user-slice/userSlice.ts";
 import {recipesSlice} from "./recipes-slice/recipesSlice.ts";
+import {recipeSlice} from "./recipe-slice/recipeSlice.ts";
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         usersSlice: usersSlice.reducer,
         userSlice: userSlice.reducer,
         recipesSlice: recipesSlice.reducer,
+        recipeSlice: recipeSlice.reducer,
     }
 });
