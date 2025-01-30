@@ -12,12 +12,18 @@ export const Pagination: FC<PaginationType> = ({maxPages}) => {
 
     const handleOnClickPrev = () => {
         const newPageValue = currentPage - 1;
-        setQuery({page: newPageValue < 1 ? '1' : newPageValue.toString()});
+        setQuery({
+            ...Object.fromEntries(query.entries()),
+            page: newPageValue < 1 ? '1' : newPageValue.toString()
+        });
     }
 
     const handleOnClickNext = () => {
         const newPageValue = currentPage + 1;
-        setQuery({page: newPageValue >= maxPages ? maxPages.toString() : newPageValue.toString()});
+        setQuery({
+            ...Object.fromEntries(query.entries()),
+            page: newPageValue >= maxPages ? maxPages.toString() : newPageValue.toString()
+        });
     }
 
     return (

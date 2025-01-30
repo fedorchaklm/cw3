@@ -21,6 +21,19 @@ const loadRecipes = createAsyncThunk('recipesSlice/loadRecipes',
         }
     });
 
+
+const loadRecipesByTag = createAsyncThunk('recipesSlice/loadRecipesByTag',
+    async ({ tag, page }: { tag: string; page: number; }, thunkAPI) => {
+        try {
+            const recipes = await recipeService.getRecipesByTag(tag, page);
+            console.log(recipes);
+            return thunkAPI.fulfillWithValue(recipes)
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e)
+        }
+    });
+
+
 export const recipesSlice = createSlice({
     name: 'recipesSlice',
     initialState: recipesSliceInitialState,
@@ -29,6 +42,9 @@ export const recipesSlice = createSlice({
         builder.addCase(loadRecipes.fulfilled, (state, action) => {
             state.recipes = action.payload;
         })
+            .addCase(loadRecipesByTag.fulfilled, (state, action) => {
+                state.recipes = action.payload;
+            })
 });
 
-export const recipesSliceActions = {...recipesSlice.actions, loadRecipes};
+export const recipesSliceActions = {...recipesSlice.actions, loadRecipes, loadRecipesByTag};

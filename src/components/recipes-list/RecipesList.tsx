@@ -15,11 +15,16 @@ export const RecipesList: FC = () => {
     const {recipes} = useAppSelector(({recipesSlice}) => recipesSlice);
     const dispatch = useAppDispatch();
     const [query] = useSearchParams();
+    const page = query.get('page') || '1';
+    const tag = query.get('tag');
 
     useEffect(() => {
-        const page = query.get('page') || '1';
-        dispatch(recipesSliceActions.loadRecipes(Number(page)));
-    }, [query]);
+        if (tag) {
+            dispatch(recipesSliceActions.loadRecipesByTag({ tag, page: Number(page) }));
+        } else {
+            dispatch(recipesSliceActions.loadRecipes(Number(page)));
+        }
+    }, [page, tag]);
 
     return (
         recipes === null ? <Loading/> :

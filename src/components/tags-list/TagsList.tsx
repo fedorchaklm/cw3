@@ -11,7 +11,7 @@ export const TagsList = () => {
 
     useEffect(() => {
         dispatch(tagsSliceActions.loadTags());
-    }, [tags]);
+    }, []);
 
     return (
         tags === null ? <Loading/> :

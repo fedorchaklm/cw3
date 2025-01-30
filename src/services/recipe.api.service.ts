@@ -10,6 +10,12 @@ export const recipeService = {
         const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes?skip=${skip}&limit=${limit}`);
         return data;
     },
+    getRecipesByTag: async (tag: string, page: number): Promise<IRecipesResponseModel> => {
+        const limit = limitOfRecipesPage;
+        const skip = limit * page - limit;
+        const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes/tag/${tag}?skip=${skip}&limit=${limit}`);
+        return data;
+    },
     getRecipeById: async (id: string): Promise<IRecipe> => {
         const {data: user} = await axiosInstance.get<IRecipe>(`/recipes/${id}`);
         return user;

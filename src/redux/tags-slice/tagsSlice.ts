@@ -5,7 +5,7 @@ type tagsSliceType = {
     tags: Array<string>;
 };
 
-const tagsSliceinitialState: tagsSliceType = {
+const tagsSliceInitialState: tagsSliceType = {
     tags: []
 };
 
@@ -22,7 +22,7 @@ const loadTags = createAsyncThunk('tagsSlice/loadTags',
 
 export const tagsSlice = createSlice({
     name: 'tagsSlice',
-    initialState: tagsSliceinitialState,
+    initialState: tagsSliceInitialState,
     reducers: {},
     extraReducers: builder =>
         builder.addCase(loadTags.fulfilled, (state, action) => {
