@@ -4,6 +4,10 @@ import {IRecipe} from "../models/IRecipe.ts";
 import {axiosInstance} from "./api.service.ts";
 
 export const recipeService = {
+    getUserRecipes: async (userId: string): Promise<Array<IRecipe>> => {
+        const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes`);
+        return data.recipes.filter((recipe: IRecipe) => recipe.userId === Number(userId));
+    },
     getRecipesByPage: async (page: number): Promise<IRecipesResponseModel> => {
         const limit = limitOfRecipesPage;
         const skip = limit * page - limit;

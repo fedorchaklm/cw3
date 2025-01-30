@@ -5,17 +5,23 @@ import {userSliceActions} from "../../redux/user-slice/userSlice.ts";
 import {useParams} from "react-router";
 import {Loading} from "../loading/Loading.tsx";
 import {formatDate} from "../../helpers/helpers.ts";
+import {IRecipe} from "../../models/IRecipe.ts";
+import {Recipe} from "../recipe/Recipe.tsx";
+import {userRecipesSliceActions} from "../../redux/user-recipes-slice/userRecipesSlice.ts";
 
 export const UserDetails = () => {
     const {id} = useParams();
     const {user} = useAppSelector(({userSlice}) => userSlice);
+    const {userRecipes} = useAppSelector(({userRecipesSlice}) => userRecipesSlice);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (id) {
             dispatch(userSliceActions.loadUser(id));
+            dispatch(userRecipesSliceActions.loadUserRecipes(id))
         }
     }, [id]);
+
 
     return user === null ? <Loading/> :
         <div className='flex flex-col items-center gap-2 mx-auto w-fit px-4'>
@@ -28,6 +34,7 @@ export const UserDetails = () => {
             <p>Phone: {user.phone}</p>
             <p>Address: {user.address.stateCode}, {user.address.state}, {user.address.country}, {user.address.city}, {user.address.address}</p>
             <img src={user.image} alt={user.lastName}/>
-            {/*<div>{recipes.recipes.filter(recipe => recipe.userId === userId)}</div>*/}
-        </div>;
+            {userRecipes.map((recipe: IRecipe) => <Recipe
+                key={recipe.id} recipe={recipe}/>)}
+        </div>
 }

@@ -5,12 +5,14 @@ import {userSlice} from "./user-slice/userSlice.ts";
 import {recipesSlice} from "./recipes-slice/recipesSlice.ts";
 import {recipeSlice} from "./recipe-slice/recipeSlice.ts";
 import {tagsSlice} from "./tags-slice/tagsSlice.ts";
+import {userRecipesSlice} from "./user-recipes-slice/userRecipesSlice.ts";
 
 export const store = configureStore({
     reducer: {
         currentUserSlice: currentUserSlice.reducer,
         usersSlice: usersSlice.reducer,
         userSlice: userSlice.reducer,
+        userRecipesSlice: userRecipesSlice.reducer,
         recipesSlice: recipesSlice.reducer,
         recipeSlice: recipeSlice.reducer,
         tagsSlice: tagsSlice.reducer
