@@ -4,7 +4,8 @@ import {IUserWithTokens} from "../models/IUserWithTokens.ts";
 import {retrieveLocalStorage, saveToLocalStorage} from "../helpers/localStorageHelpers.ts";
 import IUser from "../models/IUser.ts";
 import {IUsersResponseModel} from "../models/IUsersResponseModel.ts";
-import {limitOfUsersByPage} from "../constants/constants.ts";
+import {limitOfRecipesPage, limitOfUsersByPage} from "../constants/constants.ts";
+import {IRecipesResponseModel} from "../models/IRecipesResponseModel.ts";
 
 // export const apiService = {
 //     getAll: async <T>(url: string): Promise<Array<T>> => {
@@ -58,5 +59,12 @@ export const userService = {
     }
 };
 
-
+export const recipeService = {
+    getRecipesByPage: async (page: number): Promise<IRecipesResponseModel> => {
+        const limit = limitOfRecipesPage;
+        const skip = limit * page - limit;
+        const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes?skip=${skip}&limit=${limit}`);
+        return data;
+    },
+};
 
