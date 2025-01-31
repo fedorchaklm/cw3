@@ -8,10 +8,10 @@ export const recipeService = {
         const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes`);
         return data.recipes.filter((recipe: IRecipe) => recipe.userId === Number(userId));
     },
-    getRecipesByPage: async (page: number): Promise<IRecipesResponseModel> => {
+    getRecipesByPage: async (page: number, searchParam: string): Promise<IRecipesResponseModel> => {
         const limit = limitOfRecipesPage;
         const skip = limit * page - limit;
-        const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes?skip=${skip}&limit=${limit}`);
+        const {data} = await axiosInstance.get<IRecipesResponseModel>(`/recipes/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
         return data;
     },
     getRecipesByTag: async (tag: string, page: number): Promise<IRecipesResponseModel> => {
@@ -29,3 +29,11 @@ export const recipeService = {
         return tags;
     }
 };
+
+// getUsersByPage: async (page: number, searchParam: string): Promise<IUsersResponseModel> => {
+//     const limit = limitOfUsersByPage;
+//     const skip = limit * page - limit;
+//     // const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}&limit=${limit}`);
+//     const {data} = await axiosInstance.get<IUsersResponseModel>(`/users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
+//     return data;
+// },

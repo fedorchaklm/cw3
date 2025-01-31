@@ -11,11 +11,7 @@ import {Loading} from "../loading/Loading.tsx";
 import {limitOfUsersByPage} from "../../constants/constants.ts";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
-
-
-type searchDataType = {
-    search: string
-};
+import {searchDataType} from "../../models/searchDataType.ts";
 
 export const UsersList: FC = () => {
     const {users} = useAppSelector(({usersSlice}) => usersSlice);
@@ -47,7 +43,6 @@ export const UsersList: FC = () => {
                         <Pagination maxPages={getMaxPages(users.total, limitOfUsersByPage)}/>
                     </div>
                     : <NotFound/>}
-
             </div>
     );
 }

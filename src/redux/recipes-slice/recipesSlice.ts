@@ -11,9 +11,9 @@ const recipesSliceInitialState: recipesSliceType = {
 };
 
 const loadRecipes = createAsyncThunk('recipesSlice/loadRecipes',
-    async (page: number, thunkAPI) => {
+    async ({page, searchParam}: { page: number, searchParam: string }, thunkAPI) => {
         try {
-            const recipes = await recipeService.getRecipesByPage(page);
+            const recipes = await recipeService.getRecipesByPage(page, searchParam);
             console.log(recipes);
             return thunkAPI.fulfillWithValue(recipes)
         } catch (e) {
@@ -23,7 +23,7 @@ const loadRecipes = createAsyncThunk('recipesSlice/loadRecipes',
 
 
 const loadRecipesByTag = createAsyncThunk('recipesSlice/loadRecipesByTag',
-    async ({ tag, page }: { tag: string; page: number; }, thunkAPI) => {
+    async ({tag, page}: { tag: string; page: number; }, thunkAPI) => {
         try {
             const recipes = await recipeService.getRecipesByTag(tag, page);
             console.log(recipes);

@@ -9,7 +9,6 @@ export const userService = {
         const skip = limit * page - limit;
         // const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}&limit=${limit}`);
         const {data} = await axiosInstance.get<IUsersResponseModel>(`/users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
-
         return data;
     },
     getUserById: async (id: string): Promise<IUser> => {
