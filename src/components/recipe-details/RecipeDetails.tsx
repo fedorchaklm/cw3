@@ -10,15 +10,16 @@ export const RecipeDetails = () => {
     const {id} = useParams();
     const {recipe} = useAppSelector(({recipeSlice}) => recipeSlice);
     const dispatch = useAppDispatch();
+    const isRecipeLoaded = Number(id) === recipe?.id;
 
     useEffect(() => {
-        if (id) {
+        if (id && !isRecipeLoaded) {
             dispatch(recipeSliceActions.loadRecipe(id));
         }
-    }, [id]);
+    }, [id, isRecipeLoaded]);
 
     return (
-        recipe === null ? <Loading/> :
+        !isRecipeLoaded ? <Loading/> :
             <div className='flex flex-col gap-2 mx-auto w-fit px-4'>
                 <h1 className='text-3xl self-center'>{recipe.name}</h1>
                 <img className='self-center' src={recipe.image} alt={recipe.name}/>

@@ -14,16 +14,17 @@ export const UserDetails = () => {
     const {user} = useAppSelector(({userSlice}) => userSlice);
     const {userRecipes} = useAppSelector(({userRecipesSlice}) => userRecipesSlice);
     const dispatch = useAppDispatch();
+    const isUserLoaded = Number(id) === user?.id;
 
     useEffect(() => {
-        if (id) {
+        if (id && !isUserLoaded) {
             dispatch(userSliceActions.loadUser(id));
             dispatch(userRecipesSliceActions.loadUserRecipes(id))
         }
-    }, [id]);
+    }, [id, isUserLoaded]);
 
 
-    return user === null ? <Loading/> :
+    return !isUserLoaded ? <Loading/> :
         <div className='flex flex-col items-center gap-2 mx-auto w-fit px-4'>
             <h1 className='text-3xl'>Information about {user.firstName} {user.lastName}</h1>
             <p>Username: {user.username}</p>
@@ -34,7 +35,7 @@ export const UserDetails = () => {
             <p>Phone: {user.phone}</p>
             <p>Address: {user.address.stateCode}, {user.address.state}, {user.address.country}, {user.address.city}, {user.address.address}</p>
             <img src={user.image} alt={user.lastName}/>
-            {userRecipes.map((recipe: IRecipe) => <Recipe
-                key={recipe.id} recipe={recipe}/>)}
+            {userRecipes.length > 0 ? userRecipes.map((recipe: IRecipe) => <Recipe
+                key={recipe.id} recipe={recipe}/>): <p>No recipes yet</p>}
         </div>
 }
