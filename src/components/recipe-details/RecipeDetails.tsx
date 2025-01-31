@@ -7,16 +7,16 @@ import {Loading} from "../loading/Loading.tsx";
 import './RecipeDetails.css';
 
 export const RecipeDetails = () => {
-    const {id} = useParams();
+    const {recipeId} = useParams();
     const {recipe} = useAppSelector(({recipeSlice}) => recipeSlice);
     const dispatch = useAppDispatch();
-    const isRecipeLoaded = Number(id) === recipe?.id;
+    const isRecipeLoaded = Number(recipeId) === recipe?.id;
 
     useEffect(() => {
-        if (id && !isRecipeLoaded) {
-            dispatch(recipeSliceActions.loadRecipe(id));
+        if (recipeId && !isRecipeLoaded) {
+            dispatch(recipeSliceActions.loadRecipe(recipeId));
         }
-    }, [id, isRecipeLoaded]);
+    }, [recipeId, isRecipeLoaded]);
 
     return (
         !isRecipeLoaded ? <Loading/> :

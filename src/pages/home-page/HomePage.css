@@ -1,5 +1,5 @@
 .home-page {
-    @apply bg-[url(/assets/burger.jpg)] bg-center bg-cover bg-fixed;
+    @apply bg-[url(/assets/croissant.jpg)] bg-center bg-cover bg-fixed;
     min-height: calc(100vh - 48px);
 }
 

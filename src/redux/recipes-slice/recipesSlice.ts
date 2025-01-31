@@ -2,11 +2,11 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IRecipesResponseModel} from "../../models/IRecipesResponseModel.ts";
 import {recipeService} from "../../services/recipe.api.service.ts";
 
-type recipesSliceType = {
+type RecipesSliceType = {
     recipes: IRecipesResponseModel | null
 };
 
-const recipesSliceInitialState: recipesSliceType = {
+const recipesSliceInitialState: RecipesSliceType = {
     recipes: null
 };
 
@@ -41,8 +41,7 @@ export const recipesSlice = createSlice({
     extraReducers: builder =>
         builder.addCase(loadRecipes.fulfilled, (state, action) => {
             state.recipes = action.payload;
-        })
-            .addCase(loadRecipesByTag.fulfilled, (state, action) => {
+        }).addCase(loadRecipesByTag.fulfilled, (state, action) => {
                 state.recipes = action.payload;
             })
 });

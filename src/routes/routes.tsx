@@ -12,9 +12,9 @@ export const routes = createBrowserRouter([
         path: '/', element: <MainLayout/>, children: [
             {path: '', element: <HomePage/>},
             {path: '/users', element: <UsersPage/>},
-            {path: '/users/:id', element: <UserPage/>},
+            {path: '/users/:userId', element: <UserPage/>},
             {path: '/recipes', element: <RecipesPage/>},
-            {path: '/recipes/:id', element: <RecipePage/>},
+            {path: '/recipes/:recipeId', element: <RecipePage/>},
             {path: '/login', element: <LoginPage/>},
         ]
     }

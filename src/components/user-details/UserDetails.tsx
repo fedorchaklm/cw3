@@ -10,18 +10,18 @@ import {Recipe} from "../recipe/Recipe.tsx";
 import {userRecipesSliceActions} from "../../redux/user-recipes-slice/userRecipesSlice.ts";
 
 export const UserDetails = () => {
-    const {id} = useParams();
+    const {userId} = useParams();
     const {user} = useAppSelector(({userSlice}) => userSlice);
     const {userRecipes} = useAppSelector(({userRecipesSlice}) => userRecipesSlice);
     const dispatch = useAppDispatch();
-    const isUserLoaded = Number(id) === user?.id;
+    const isUserLoaded = Number(userId) === user?.id;
 
     useEffect(() => {
-        if (id && !isUserLoaded) {
-            dispatch(userSliceActions.loadUser(id));
-            dispatch(userRecipesSliceActions.loadUserRecipes(id))
+        if (userId && !isUserLoaded) {
+            dispatch(userSliceActions.loadUser(userId));
+            dispatch(userRecipesSliceActions.loadUserRecipes(userId))
         }
-    }, [id, isUserLoaded]);
+    }, [userId, isUserLoaded]);
 
 
     return !isUserLoaded ? <Loading/> :
