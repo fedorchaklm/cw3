@@ -1,7 +1,6 @@
-import {Menu} from "../../components/menu/Menu.tsx";
-import {Link, Outlet} from "react-router";
+import {Link} from "react-router";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
-import {Logo} from "../../components/logo/Logo.tsx";
+import './HomePage.css';
 
 export const HomePage = () => {
     const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);
@@ -16,12 +15,8 @@ export const HomePage = () => {
 
     return (
         currentUser &&
-        <div>
-            <div className='flex justify-between px-4 bg-black text-white w-full'>
-                <Menu/>
-                <Logo img={currentUser.image} alt={currentUser.lastName}/>
-            </div>
-            <Outlet/>
-        </div>
+        <div className="home-page"></div>
     );
 }
+
+// <div className="bg-[url(/assets/burger.jpg)] bg-center bg-cover min-h-screen"></div>

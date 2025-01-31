@@ -25,17 +25,27 @@ export const UserDetails = () => {
 
 
     return !isUserLoaded ? <Loading/> :
-        <div className='flex flex-col items-center gap-2 mx-auto w-fit px-4'>
-            <h1 className='text-3xl'>Information about {user.firstName} {user.lastName}</h1>
-            <p>Username: {user.username}</p>
-            <p>Age: {user.age}</p>
-            <p>Gender: {user.gender}</p>
-            <p>Birthdate: {formatDate(user.birthDate)}</p>
-            <p>Email: {user.email}</p>
-            <p>Phone: {user.phone}</p>
-            <p>Address: {user.address.stateCode}, {user.address.state}, {user.address.country}, {user.address.city}, {user.address.address}</p>
-            <img src={user.image} alt={user.lastName}/>
-            {userRecipes.length > 0 ? userRecipes.map((recipe: IRecipe) => <Recipe
-                key={recipe.id} recipe={recipe}/>): <p>No recipes yet</p>}
+        <div className='flex flex-col items-center justify-center gap-4 w-full text-2xl py-4'>
+            <div className='flex justify-center gap-10'>
+                <div>
+                    <img className='w-40' src={user.image} alt={user.lastName}/>
+                </div>
+                <div className='flex flex-col gap-4'>
+                    <h1 className='text-3xl'>Information about {user.firstName} {user.lastName}</h1>
+                    <p>Username: {user.username}</p>
+                    <p>Age: {user.age}</p>
+                    <p>Gender: {user.gender}</p>
+                    <p>Birthdate: {formatDate(user.birthDate)}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Phone: {user.phone}</p>
+                    <p>Address: {user.address.stateCode}, {user.address.state}, {user.address.country}, {user.address.city}, {user.address.address}</p>
+                    <hr className='h-px my-8 bg-white border-0'/>
+                </div>
+            </div>
+            <div className='flex flex-col gap-10'>
+                <h2 className='text-2xl'>{user.firstName}`s recipes:</h2>
+                {userRecipes.length > 0 ? userRecipes.map((recipe: IRecipe) =>
+                    <Recipe key={recipe.id} recipe={recipe}/>) : <p>No recipes yet</p>}
+            </div>
         </div>
 }

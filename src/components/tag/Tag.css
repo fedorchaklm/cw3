@@ -1,5 +1,5 @@
 .tagBtn {
-    @apply border-gray-500 border-2 px-0.5;
+    @apply border-gray-500 border-2 px-0.5 bg-white;
 }
 
 .tagBtn:hover {

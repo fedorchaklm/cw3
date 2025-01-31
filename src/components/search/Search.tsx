@@ -22,7 +22,7 @@ export const Search: FC<SearchType> = ({onSubmit}) => {
 
     return (
         <form className='search' onSubmit={handleSubmit(submit)}>
-            <label htmlFor='search'>Search</label>
+            <label htmlFor='search' className='search-label'>Search</label>
             <div className='relative'>
                 <div className='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
                     <img className='w-5 h-5 text-gray-500' src='/assets/search.svg' alt='Search'/>

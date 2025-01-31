@@ -1,13 +1,15 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IUsersResponseModel} from "../../models/IUsersResponseModel.ts";
 import {userService} from "../../services/user.api.service.ts";
 
 type usersSliceType = {
-    users: IUsersResponseModel | null
+    users: IUsersResponseModel | null,
+    error: string
 };
 
 const userSliceInitialState: usersSliceType = {
-    users: null
+    users: null,
+    error: ''
 };
 
 const loadUsers = createAsyncThunk('usersSlice/loadUsers',
@@ -15,9 +17,11 @@ const loadUsers = createAsyncThunk('usersSlice/loadUsers',
         try {
             const users = await userService.getUsersByPage(page, searchParam);
             console.log(users);
-            return thunkAPI.fulfillWithValue(users)
+            return thunkAPI.fulfillWithValue(users);
         } catch (e) {
-            return thunkAPI.rejectWithValue(e)
+            if (e instanceof Error) {
+                return thunkAPI.rejectWithValue(e.message);
+            }
         }
     });
 
@@ -37,9 +41,13 @@ export const usersSlice = createSlice({
     initialState: userSliceInitialState,
     reducers: {},
     extraReducers: builder =>
-        builder.addCase(loadUsers.fulfilled, (state, action) => {
+        builder.addCase(loadUsers.fulfilled, (state, action: PayloadAction<IUsersResponseModel>) => {
             state.users = action.payload;
         })
+            .addCase(loadUsers.rejected, (state, action) => {
+                console.log('> 2', action);
+                state.error = action.payload as string;
+            })
 });
 
 export const usersSliceActions = {...usersSlice.actions, loadUsers};

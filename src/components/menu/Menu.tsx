@@ -3,14 +3,14 @@ import './Menu.css';
 
 export const Menu = () => {
     return (
-        <ul className='flex justify-center gap-2 w-fit'>
-            <li className='btn'>
+        <ul className='menu'>
+            <li className='menu-item'>
                 <Link to='/'>Home</Link>
             </li>
-            <li className='btn'>
+            <li className='menu-item'>
                 <Link to='/users'>Users</Link>
             </li>
-            <li className='btn'>
+            <li className='menu-item'>
                 <Link to='/recipes'>Recipes</Link>
             </li>
         </ul>

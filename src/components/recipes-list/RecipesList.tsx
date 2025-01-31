@@ -20,6 +20,7 @@ export const RecipesList: FC = () => {
     const [query, setQuery] = useSearchParams();
     const page = query.get('page') || '1';
     const tag = query.get('tag');
+    const q = query.get('q');
 
     useEffect(() => {
         const page = query.get('page') || '1';
@@ -27,11 +28,12 @@ export const RecipesList: FC = () => {
         const q = query.get('q') || '';
         console.log('>', q);
         if (tag) {
+            console.log(tag);
             dispatch(recipesSliceActions.loadRecipesByTag({tag, page: Number(page)}));
         } else {
             dispatch(recipesSliceActions.loadRecipes({page: Number(page), searchParam: q}));
         }
-    }, [page, tag]);
+    }, [page, tag, q]);
 
     const onSubmit = (searchData: searchDataType) => {
         console.log('>', searchData);
@@ -41,7 +43,7 @@ export const RecipesList: FC = () => {
 
     return (
         recipes === null ? <Loading/> :
-            <div className='flex flex-col items-center gap-2 my-4'>
+            <div className='flex flex-col items-center gap-2 py-4'>
                 <Search onSubmit={onSubmit}/>
                 {recipes.recipes.length > 0 ?
                     <div className='flex flex-col items-center gap-2 my-4'>

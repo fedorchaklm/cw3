@@ -31,7 +31,7 @@ export const Pagination: FC<PaginationType> = ({maxPages}) => {
             <button className={currentPage <= 1 ? 'disabledPaginationBtn' : 'paginationBtn'}
                     onClick={handleOnClickPrev}>prev
             </button>
-            <p className='text-2xl'>{currentPage}/{maxPages}</p>
+            <p className='text-2xl text-white'>{currentPage}/{maxPages}</p>
             <button className={currentPage >= maxPages ? 'disabledPaginationBtn' : 'paginationBtn'}
                     onClick={handleOnClickNext}>next
             </button>

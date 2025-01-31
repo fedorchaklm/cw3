@@ -1,7 +1,11 @@
-.btn {
-    @apply px-4 py-2 text-white font-bold text-xl leading-tight;
+.menu {
+    @apply flex items-center gap-2 w-fit h-12;
 }
 
-.btn:hover {
-    @apply text-amber-200 cursor-pointer;
+.menu-item {
+    @apply px-4 py-2 text-white font-bold text-xl leading-tight hover:text-amber-200 cursor-pointer;
 }
+
+/*.menu-item:hover {*/
+/*    @apply text-amber-200 cursor-pointer;*/
+/*}*/

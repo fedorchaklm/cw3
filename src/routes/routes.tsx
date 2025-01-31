@@ -10,14 +10,11 @@ import {RecipePage} from "../pages/recipe-page/RecipePage.tsx";
 export const routes = createBrowserRouter([
     {
         path: '/', element: <MainLayout/>, children: [
-            {
-                path: '', element: <HomePage/>, children: [
-                    {path: '/users', element: <UsersPage/>},
-                    {path: '/users/:id', element: <UserPage/>},
-                    {path: '/recipes', element: <RecipesPage/>},
-                    {path: '/recipes/:id', element: <RecipePage/>},
-                ]
-            },
+            {path: '', element: <HomePage/>},
+            {path: '/users', element: <UsersPage/>},
+            {path: '/users/:id', element: <UserPage/>},
+            {path: '/recipes', element: <RecipesPage/>},
+            {path: '/recipes/:id', element: <RecipePage/>},
             {path: '/login', element: <LoginPage/>},
         ]
     }

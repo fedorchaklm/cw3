@@ -22,7 +22,7 @@ export const LoginForm: FC = () => {
 
     return (
         <div className="flex flex-col items-center gap-4">
-            <form className='flex flex-col items-center px-8 gap-4 w-96 m-auto py-8 bg-white rounded-2xl mt-20'
+            <form className='flex flex-col items-center px-8 gap-4 w-96 m-auto py-8 bg-white rounded-2xl mt-20 text-black'
                   onSubmit={handleSubmit(customSubmit)}>
                 <legend className='text-2xl'>Login to your account</legend>
                 <label htmlFor='username'>Enter your username</label>

@@ -1,0 +1,5 @@
+.home-page {
+    @apply bg-[url(/assets/food.jpg)] bg-center bg-cover bg-fixed;
+    min-height: calc(100vh - 48px);
+}
+
