@@ -6,19 +6,22 @@ import {retrieveLocalStorage} from "../../helpers/localStorageHelpers.ts";
 
 type currentUserSliceType = {
     currentUser: IUserWithTokens | null;
+    error: string;
 };
 
 const currentUserSliceInitialState: currentUserSliceType = {
-    currentUser: retrieveLocalStorage<IUserWithTokens>('user')
+    currentUser: retrieveLocalStorage<IUserWithTokens>('user'),
+    error: ''
 };
 
 const loadUser = createAsyncThunk('currentUserSlice/loadUser',
     async (loginData: LoginDataType, thunkAPI) => {
         try {
             const user = await authService.login(loginData);
-            return thunkAPI.fulfillWithValue(user)
+            return thunkAPI.fulfillWithValue(user);
         } catch (e) {
-            return thunkAPI.rejectWithValue(e)
+            console.log(e);
+            return thunkAPI.rejectWithValue(e);
         }
     });
 
@@ -29,6 +32,8 @@ export const currentUserSlice = createSlice({
     extraReducers: builder =>
         builder.addCase(loadUser.fulfilled, (state, action) => {
             state.currentUser = action.payload;
+        }).addCase(loadUser.rejected, (state, action) => {
+            state.error = action.payload;
         })
 });
 

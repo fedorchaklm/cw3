@@ -8,7 +8,7 @@ export const userService = {
         const limit = limitOfUsersByPage;
         const skip = limit * page - limit;
         // const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}&limit=${limit}`);
-        const {data} = await axiosInstance.get<IUsersResponseModel>(`/users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
+        const {data} = await axiosInstance.get<IUsersResponseModel>(`auth/users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
         return data;
     },
     getUserById: async (id: string): Promise<IUser> => {
