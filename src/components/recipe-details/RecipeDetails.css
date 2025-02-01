@@ -1,3 +1,7 @@
+.recipe-wrap {
+    @apply flex flex-col gap-4 mx-auto w-fit px-4 text-white text-xl
+}
+
 img {
     @apply w-80 rounded-full;
 }

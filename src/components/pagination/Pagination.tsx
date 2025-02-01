@@ -27,7 +27,7 @@ export const Pagination: FC<PaginationType> = ({maxPages}) => {
     }
 
     return (
-        <div className='flex flex-row justify-center items-center gap-2 my-5'>
+        <div className='pagination'>
             <button className={currentPage <= 1 ? 'disabledPaginationBtn' : 'paginationBtn'}
                     onClick={handleOnClickPrev}>prev
             </button>

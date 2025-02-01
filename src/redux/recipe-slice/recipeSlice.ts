@@ -4,10 +4,12 @@ import {recipeService} from "../../services/recipe.api.service.ts";
 
 type recipeSliceType = {
     recipe: IRecipe | null;
+    isRecipeLoaded: boolean;
 };
 
 const recipeSliceInitialState: recipeSliceType = {
-    recipe: null
+    recipe: null,
+    isRecipeLoaded: false,
 };
 
 const loadRecipe = createAsyncThunk('recipeSlice/loadRecipe',

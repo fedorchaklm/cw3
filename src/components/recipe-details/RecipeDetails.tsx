@@ -20,7 +20,7 @@ export const RecipeDetails = () => {
 
     return (
         !isRecipeLoaded ? <Loading/> :
-            <div className='flex flex-col gap-4 mx-auto w-fit px-4 text-white text-xl'>
+            <div className='recipe-wrap'>
                 <h1 className='text-3xl self-center'>{recipe.name}</h1>
                 <img className='self-center' src={recipe.image} alt={recipe.name}/>
                 <p><b>CookTimeMinutes: </b>{recipe.cookTimeMinutes} min</p>
