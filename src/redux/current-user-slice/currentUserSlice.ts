@@ -9,13 +9,13 @@ type currentUserSliceType = {
 };
 
 const currentUserSliceInitialState: currentUserSliceType = {
-    currentUser: null,
+    currentUser: retrieveLocalStorage<IUserWithTokens>('user')
 };
 
 const loadUser = createAsyncThunk('currentUserSlice/loadUser',
     async (loginData: LoginDataType, thunkAPI) => {
         try {
-            const user = retrieveLocalStorage<IUserWithTokens>('user') ?? await authService.login(loginData);
+            const user = await authService.login(loginData);
             return thunkAPI.fulfillWithValue(user)
         } catch (e) {
             return thunkAPI.rejectWithValue(e)

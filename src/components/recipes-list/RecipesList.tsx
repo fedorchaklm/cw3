@@ -43,11 +43,11 @@ export const RecipesList: FC = () => {
 
     return (
         recipes === null ? <Loading/> :
-            <div className='flex flex-col items-center gap-2 py-4'>
+            <div className='flex flex-col items-center gap-2 py-4 text-xl w-full'>
                 <Search onSubmit={onSubmit}/>
                 {recipes.recipes.length > 0 ?
                     <div className='flex flex-col items-center gap-2 my-4'>
-                        <h1 className='text-3xl text-white'>Our recipes:</h1>
+                        <h1 className='text-3xl text-white'>Recipes:</h1>
                         {recipes.recipes.map((recipe: IRecipe) => <Recipe key={recipe.id} recipe={recipe}/>)}
                         <Pagination maxPages={getMaxPages(recipes.total, limitOfRecipesPage)}/>
                         <TagsList/>

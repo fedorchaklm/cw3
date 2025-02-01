@@ -34,11 +34,11 @@ export const UsersList: FC = () => {
 
     return (
         users === null ? <Loading/> :
-            <div className='flex flex-col items-center gap-2 py-4'>
+            <div className='flex flex-col items-center gap-2 py-2 w-full text-xl'>
                 <Search onSubmit={onSubmit}/>
                 {users.users.length > 0 ?
-                    <div className='flex flex-col items-center gap-2 my-4 bg-red-300 min-w-52'>
-                        <h1 className='text-3xl text-white'>Our users:</h1>
+                    <div className='flex flex-col items-center gap-2 my-2 w-1/3'>
+                        <h1 className='text-3xl text-white'>Users:</h1>
                         {users.users.map((user: IUser) => <User key={user.id} user={user}/>)}
                         <Pagination maxPages={getMaxPages(users.total, limitOfUsersByPage)}/>
                     </div>

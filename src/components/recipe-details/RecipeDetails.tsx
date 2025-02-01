@@ -20,17 +20,17 @@ export const RecipeDetails = () => {
 
     return (
         !isRecipeLoaded ? <Loading/> :
-            <div className='flex flex-col gap-2 mx-auto w-fit px-4 text-white'>
+            <div className='flex flex-col gap-4 mx-auto w-fit px-4 text-white text-xl'>
                 <h1 className='text-3xl self-center'>{recipe.name}</h1>
                 <img className='self-center' src={recipe.image} alt={recipe.name}/>
                 <p><b>CookTimeMinutes: </b>{recipe.cookTimeMinutes} min</p>
                 <p><b>PrepTimeMinutes: </b>{recipe.prepTimeMinutes} min</p>
-                <p><b>calories: </b>{recipe.caloriesPerServing}</p>
+                <p><b>Calories: </b>{recipe.caloriesPerServing}</p>
                 <p><b>Difficulty: </b>{recipe.difficulty}</p>
                 <p><b>Rating: </b> {recipe.rating}</p>
                 <p><b>Ingredients: </b> {recipe.ingredients}</p>
                 <><b>instructions: </b> {recipe.instructions}</>
-                <Link to={`/users/${recipe.userId}`} className='user text-black text-2xl'>About user</Link>
+                <Link to={`/users/${recipe.userId}`} className='details'>About recipe's author</Link>
             </div>
     );
 }

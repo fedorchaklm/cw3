@@ -4,8 +4,12 @@ export const HomePage = () => {
 
     return (
         <div className="home-page">
-               </div>
+            <img src={'/assets/burger.jpg'} alt='burger'/>
+            <h1>Welcome to our site – Ultimate Recipe Collection!</h1>
+            <p className='text-2xl'>Looking for delicious recipes? You’ve come to the right place! Here you’ll find a
+                collection of
+                mouthwatering recipes and chefs sharing their passion for food.</p>
+        </div>
     );
 }
 
-// <div className="bg-[url(/assets/burger.jpg)] bg-center bg-cover min-h-screen"></div>

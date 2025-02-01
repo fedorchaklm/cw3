@@ -1,9 +1,5 @@
 .home-page {
-    @apply
-    /*bg-[url(/assets/croissant.jpg)] bg-center bg-cover bg-fixed */
-    min-h-screen
-    flex justify-center items-center;
-    /*min-height: calc(100vh - 48px);*/
-
+    @apply text-white text-3xl flex flex-col items-center gap-8 px-4 mt-20 max-w-xl text-center;
+    /*min-height: calc(100vh - 3rem);*/
 }
 

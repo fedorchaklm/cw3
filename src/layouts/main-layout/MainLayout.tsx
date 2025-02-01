@@ -6,11 +6,12 @@ import './MainLayout.css';
 
 export const MainLayout = () => {
     const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);
-
+    console.log(currentUser);
     if (!currentUser) {
         return (
-            <div className='bg-white text-black text-3xl w-fit px-4 py-4 rounded-xl'>
-                <p>You need to authenticate</p> <Link className='text-gray-500 hover:underline' to='/login'>Login</Link>
+            <div
+                className='flex items-center gap-4 m-auto my-60 bg-white text-black text-3xl w-fit px-4 py-4 rounded-xl'>
+                <p>You need to authenticate</p><Link className='text-gray-500 hover:underline' to='/login'>Login</Link>
             </div>
         );
     }
@@ -21,7 +22,9 @@ export const MainLayout = () => {
                 <Menu/>
                 <Logo img={currentUser.image} alt={currentUser.lastName}/>
             </div>
-            <Outlet/>
+            <div className='flex justify-center'>
+                <Outlet/>
+            </div>
         </>
     );
 }

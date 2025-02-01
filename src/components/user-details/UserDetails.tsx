@@ -28,7 +28,7 @@ export const UserDetails = () => {
         <div className='flex flex-col items-center justify-center gap-4 w-full text-2xl py-4'>
             <div className='flex justify-center gap-10'>
                 <div>
-                    <img className='w-40' src={user.image} alt={user.lastName}/>
+                    <img className='w-80' src={user.image} alt={user.lastName}/>
                 </div>
                 <div className='flex flex-col gap-4'>
                     <h1 className='text-3xl'>Information about {user.firstName} {user.lastName}</h1>
