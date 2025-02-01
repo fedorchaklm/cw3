@@ -4,7 +4,7 @@ export const retrieveLocalStorage = <T>(key: string) => {
         const obj = JSON.parse(str);
         return obj as T;
     } catch (e) {
-        console.info(e);
+        console.log(e);
         return null;
     }
 }
