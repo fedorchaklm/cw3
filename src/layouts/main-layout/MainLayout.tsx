@@ -15,6 +15,5 @@ export const MainLayout = () => {
             </div>}
             <Outlet/>
         </>
-    )
-        ;
+    );
 }
