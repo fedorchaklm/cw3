@@ -19,6 +19,7 @@ const loadUsers = createAsyncThunk('usersSlice/loadUsers',
             console.log(users);
             return thunkAPI.fulfillWithValue(users);
         } catch (e) {
+            console.log(e);
             if (e instanceof Error) {
                 return thunkAPI.rejectWithValue(e.message);
             }

@@ -6,7 +6,7 @@ import {axiosInstance} from "./api.service.ts";
 export const authService = {
     login: async (loginData: LoginDataType): Promise<IUserWithTokens> => {
         const {data: userWithToken} = await axiosInstance.post<IUserWithTokens>(`auth/login`, loginData);
-        console.log(userWithToken);
+        console.log( userWithToken);
         saveToLocalStorage('user', userWithToken);
         return userWithToken;
     }

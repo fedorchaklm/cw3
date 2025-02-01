@@ -20,8 +20,11 @@ const loadUser = createAsyncThunk('currentUserSlice/loadUser',
             const user = await authService.login(loginData);
             return thunkAPI.fulfillWithValue(user);
         } catch (e) {
-            console.log(e);
-            return thunkAPI.rejectWithValue(e);
+                console.log(e);
+            if (e instanceof Error) {
+                return thunkAPI.rejectWithValue(e.message);
+            }
+            return thunkAPI.rejectWithValue('Error');
         }
     });
 
@@ -33,7 +36,8 @@ export const currentUserSlice = createSlice({
         builder.addCase(loadUser.fulfilled, (state, action) => {
             state.currentUser = action.payload;
         }).addCase(loadUser.rejected, (state, action) => {
-            state.error = action.payload;
+            console.log('> 2', action);
+            state.error = action.payload as string;
         })
 });
 
