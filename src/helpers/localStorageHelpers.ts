@@ -1,3 +1,5 @@
+// import {refreshToken} from "../services/auth.api.service.ts";
+
 export const retrieveLocalStorage = <T>(key: string) => {
     const str = localStorage.getItem(key) || '';
     try {
@@ -11,4 +13,5 @@ export const retrieveLocalStorage = <T>(key: string) => {
 
 export const saveToLocalStorage = (key: string, value: object | string | number) => {
     localStorage.setItem(key, JSON.stringify(value));
+    // setTimeout(() => refreshToken(), 60000);
 }

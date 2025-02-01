@@ -6,6 +6,7 @@ import './MainLayout.css';
 
 export const MainLayout = () => {
     const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);
+
     console.log(currentUser);
     if (!currentUser) {
         return (
@@ -16,7 +17,7 @@ export const MainLayout = () => {
         );
     }
 
-    return (
+     return (
         <>
             <div className='flex justify-between px-4 bg-black text-white w-full'>
                 <Menu/>
