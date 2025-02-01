@@ -16,7 +16,7 @@ export const User: FC<UserType> = ({user}) => {
     // );
     return (
         <Link to={`/users/${user.id}`} className='user'>
-            <p>{user.id} {user.firstName} {user.lastName}</p>
+            <p className='min-w-52 bg-amber-200'>{user.id} {user.firstName} {user.lastName}</p>
         </Link>
     );
 }
