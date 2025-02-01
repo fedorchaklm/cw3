@@ -11,11 +11,11 @@ export const routes = createBrowserRouter([
     {
         path: '/', element: <MainLayout/>, children: [
             {path: '', element: <HomePage/>},
-            {path: '/users', element: <UsersPage/>},
-            {path: '/users/:userId', element: <UserPage/>},
-            {path: '/recipes', element: <RecipesPage/>},
-            {path: '/recipes/:recipeId', element: <RecipePage/>},
-            {path: '/login', element: <LoginPage/>},
+            {path: 'users', element: <UsersPage/>},
+            {path: 'users/:userId', element: <UserPage/>},
+            {path: 'recipes', element: <RecipesPage/>},
+            {path: 'recipes/:recipeId', element: <RecipePage/>},
+            {path: 'login', element: <LoginPage/>},
         ]
     }
 ]);
