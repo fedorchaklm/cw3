@@ -11,7 +11,7 @@ import {useSearchParams} from "react-router";
 import {TagsList} from "../tags-list/TagsList.tsx";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
-import {searchDataType} from "../../models/SearchDataType.ts";
+import {SearchDataType} from "../../models/SearchDataType.ts";
 import {recipeSliceActions} from "../../redux/recipe-slice/recipeSlice.ts";
 import './RecipesList.css';
 
@@ -33,7 +33,7 @@ export const RecipesList: FC = () => {
         }
     }, [page, tag, q]);
 
-    const onSubmit = (searchData: searchDataType) => {
+    const onSubmit = (searchData: SearchDataType) => {
         setQuery({q: searchData.search, page: '1'});
     };
 

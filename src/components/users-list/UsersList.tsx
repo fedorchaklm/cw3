@@ -10,7 +10,7 @@ import {Loading} from "../loading/Loading.tsx";
 import {limitOfUsersByPage} from "../../constants/constants.ts";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
-import {searchDataType} from "../../models/SearchDataType.ts";
+import {SearchDataType} from "../../models/SearchDataType.ts";
 import {userSliceActions} from "../../redux/user-slice/userSlice.ts";
 import './UserList.css';
 
@@ -19,7 +19,7 @@ export const UsersList: FC = () => {
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
 
-    const onSubmit = (searchData: searchDataType) => {
+    const onSubmit = (searchData: SearchDataType) => {
         console.log('>', searchData);
         setQuery({q: searchData.search, page: '1'});
     };

@@ -44,7 +44,7 @@ export const UserDetails = () => {
                         <hr className='h-px my-8 bg-white border-0'/>
                     </div>
                 </div>
-                <div className='flex flex-col gap-10'>
+                <div className='flex flex-col justify-center gap-10 w-full px-4'>
                     <h2 className='text-2xl'>{user.firstName}`s recipes:</h2>
                     {userRecipes.length > 0 ? userRecipes.map((recipe: IRecipe) =>
                         <Recipe key={recipe.id} recipe={recipe}/>) : <p>No recipes yet</p>}
