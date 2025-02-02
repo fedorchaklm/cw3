@@ -8,14 +8,15 @@ import {limitOfRecipesPage} from "../../constants/constants.ts";
 import {Recipe} from "../recipe/Recipe.tsx";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {useSearchParams} from "react-router";
-import {recipesSliceActions} from "../../redux/recipes-slice/recipesSlice.ts";
+// import {recipesSliceActions} from "../../redux/recipes-slice/recipesSlice.ts";
 import {TagsList} from "../tags-list/TagsList.tsx";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
 import {searchDataType} from "../../models/searchDataType.ts";
+import {recipeSliceActions} from "../../redux/recipe-slice/recipeSlice.ts";
 
 export const RecipesList: FC = () => {
-    const {recipes} = useAppSelector(({recipesSlice}) => recipesSlice);
+    const {recipes} = useAppSelector(({recipeSlice}) => recipeSlice);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
     const page = query.get('page') || '1';
@@ -29,9 +30,9 @@ export const RecipesList: FC = () => {
         console.log('>', q);
         if (tag) {
             console.log(tag);
-            dispatch(recipesSliceActions.loadRecipesByTag({tag, page: Number(page)}));
+            dispatch(recipeSliceActions.loadRecipesByTag({tag, page: Number(page)}));
         } else {
-            dispatch(recipesSliceActions.loadRecipes({page: Number(page), searchParam: q}));
+            dispatch(recipeSliceActions.loadRecipes({page: Number(page), searchParam: q}));
         }
     }, [page, tag, q]);
 

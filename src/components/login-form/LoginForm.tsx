@@ -16,7 +16,7 @@ export const LoginForm: FC = () => {
     const dispatch = useAppDispatch();
 
     const customSubmit = async (data: LoginDataType) => {
-        dispatch(currentUserSliceActions.loadUser(data))
+        dispatch(currentUserSliceActions.loadUser(data));
         navigate('/');
     };
 

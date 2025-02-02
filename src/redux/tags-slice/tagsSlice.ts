@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {recipeService} from "../../services/recipe.api.service.ts";
 
 type tagsSliceType = {
@@ -6,7 +6,7 @@ type tagsSliceType = {
 };
 
 const tagsSliceInitialState: tagsSliceType = {
-    tags: []
+    tags: [],
 };
 
 
@@ -25,7 +25,7 @@ export const tagsSlice = createSlice({
     initialState: tagsSliceInitialState,
     reducers: {},
     extraReducers: builder =>
-        builder.addCase(loadTags.fulfilled, (state, action) => {
+        builder.addCase(loadTags.fulfilled, (state, action: PayloadAction<Array<string>>) => {
             state.tags = action.payload;
         })
 });

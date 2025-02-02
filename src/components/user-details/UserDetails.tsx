@@ -7,19 +7,19 @@ import {Loading} from "../loading/Loading.tsx";
 import {formatDate} from "../../helpers/helpers.ts";
 import {IRecipe} from "../../models/IRecipe.ts";
 import {Recipe} from "../recipe/Recipe.tsx";
-import {userRecipesSliceActions} from "../../redux/user-recipes-slice/userRecipesSlice.ts";
+import {recipeSliceActions} from "../../redux/recipe-slice/recipeSlice.ts";
 
 export const UserDetails = () => {
     const {userId} = useParams();
     const {user} = useAppSelector(({userSlice}) => userSlice);
-    const {userRecipes} = useAppSelector(({userRecipesSlice}) => userRecipesSlice);
+    const {userRecipes} = useAppSelector(({recipeSlice}) => recipeSlice);
     const dispatch = useAppDispatch();
     const isUserLoaded = Number(userId) === user?.id;
 
     useEffect(() => {
         if (userId && !isUserLoaded) {
             dispatch(userSliceActions.loadUser(userId));
-            dispatch(userRecipesSliceActions.loadUserRecipes(userId))
+            dispatch(recipeSliceActions.loadUserRecipes(userId))
         }
     }, [userId, isUserLoaded]);
 

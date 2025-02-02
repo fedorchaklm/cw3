@@ -3,7 +3,6 @@ import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
 import IUser from "../../models/IUser.ts";
 import {User} from "../user/User.tsx";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
-import {usersSliceActions} from "../../redux/users-slice/usersSlice.ts";
 import {Pagination} from "../pagination/Pagination.tsx";
 import {useSearchParams} from "react-router";
 import {getMaxPages} from "../../helpers/helpers.ts";
@@ -12,9 +11,10 @@ import {limitOfUsersByPage} from "../../constants/constants.ts";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
 import {searchDataType} from "../../models/searchDataType.ts";
+import {userSliceActions} from "../../redux/user-slice/userSlice.ts";
 
 export const UsersList: FC = () => {
-    const {users} = useAppSelector(({usersSlice}) => usersSlice);
+    const {users} = useAppSelector(({userSlice}) => userSlice);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
 
@@ -26,7 +26,7 @@ export const UsersList: FC = () => {
     useEffect(() => {
         const page = query.get('page') || '1';
         const q = query.get('q') || '';
-        dispatch(usersSliceActions.loadUsers({page: Number(page), searchParam: q}));
+        dispatch(userSliceActions.loadUsers({page: Number(page), searchParam: q}));
     }, [query]);
 
     return (
