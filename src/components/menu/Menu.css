@@ -1,5 +1,5 @@
 .menu {
-    @apply flex items-center gap-2 w-fit h-12;
+    @apply flex items-center justify-between gap-2 w-fit h-12;
 }
 
 .menu-item {

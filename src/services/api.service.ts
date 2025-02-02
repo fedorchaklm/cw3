@@ -11,7 +11,10 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((request) => {
     if (request.method?.toUpperCase() === "GET") {
-        request.headers.authorization = 'Bearer ' + retrieveLocalStorage<IUserWithTokens>('user')?.accessToken;
+        const token = retrieveLocalStorage<IUserWithTokens>('user')?.accessToken;
+        if (token) {
+            request.headers.authorization = 'Bearer ' + token;
+        }
     }
     return request;
 });
@@ -27,6 +30,7 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
 
 
 
