@@ -6,8 +6,6 @@ import {Logo} from "../logo/Logo.tsx";
 export const Menu = () => {
     const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);
 
-    console.log(currentUser);
-
     if (!currentUser) {
         return (
             <ul className='menu'>

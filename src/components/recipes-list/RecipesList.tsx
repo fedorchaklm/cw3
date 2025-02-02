@@ -36,9 +36,7 @@ export const RecipesList: FC = () => {
     }, [page, tag, q]);
 
     const onSubmit = (searchData: searchDataType) => {
-        console.log('>', searchData);
         setQuery({q: searchData.search, page: '1'});
-        // dispatch(usersSliceActions.loadUsersBySearchParam(searchData.search));
     };
 
     return (

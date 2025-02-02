@@ -15,8 +15,6 @@ export const UserDetails = () => {
     const {userRecipes} = useAppSelector(({userRecipesSlice}) => userRecipesSlice);
     const dispatch = useAppDispatch();
     const isUserLoaded = Number(userId) === user?.id;
-console.log(user, userId)
-    console.log(userRecipes)
 
     useEffect(() => {
         if (userId && !isUserLoaded) {
@@ -26,7 +24,7 @@ console.log(user, userId)
     }, [userId, isUserLoaded]);
 
 
-    return  !isUserLoaded ? <Loading/> :
+    return !isUserLoaded ? <Loading/> :
         <div className='flex flex-col items-center justify-center gap-4 w-full text-xl sm:text-2xl py-4'>
             <div className='flex flex-col sm:flex-row justify-center gap-10'>
                 <div>

@@ -7,7 +7,6 @@ import {ITokensPair} from "../models/ITokensPair.ts";
 export const authService = {
     login: async (loginData: LoginDataType): Promise<IUserWithTokens> => {
         const {data: userWithToken} = await axiosInstance.post<IUserWithTokens>(`auth/login`, loginData);
-        console.log(userWithToken);
         saveToLocalStorage('user', userWithToken);
         return userWithToken;
     },
@@ -19,12 +18,14 @@ export const authService = {
                     refreshToken,
                     accessToken
                 }
-            } = await axiosInstance.post<ITokensPair>('/refresh', {
+            } = await axiosInstance.post<ITokensPair>('/auth/refresh', {
                 refreshToken: userWithTokens.refreshToken
             });
             userWithTokens.accessToken = accessToken;
             userWithTokens.refreshToken = refreshToken;
             saveToLocalStorage('user', userWithTokens);
+            console.log(userWithTokens);
+            return userWithTokens;
         }
     }
 }

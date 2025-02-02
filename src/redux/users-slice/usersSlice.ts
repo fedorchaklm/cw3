@@ -14,7 +14,6 @@ const loadUsers = createAsyncThunk('usersSlice/loadUsers',
     async ({page, searchParam}: { page: number, searchParam: string }, thunkAPI) => {
         try {
             const users = await userService.getUsersByPage(page, searchParam);
-            console.log(users);
             return thunkAPI.fulfillWithValue(users);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);

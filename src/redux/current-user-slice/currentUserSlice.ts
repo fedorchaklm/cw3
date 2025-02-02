@@ -20,7 +20,6 @@ const loadUser = createAsyncThunk('currentUserSlice/loadUser',
             const user = await authService.login(loginData);
             return thunkAPI.fulfillWithValue(user);
         } catch (e) {
-                console.log(e);
             if (e instanceof Error) {
                 return thunkAPI.rejectWithValue(e.message);
             }

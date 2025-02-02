@@ -14,7 +14,6 @@ const loadRecipes = createAsyncThunk('recipesSlice/loadRecipes',
     async ({page, searchParam}: { page: number, searchParam: string }, thunkAPI) => {
         try {
             const recipes = await recipeService.getRecipesByPage(page, searchParam);
-            console.log(recipes);
             return thunkAPI.fulfillWithValue(recipes)
         } catch (e) {
             return thunkAPI.rejectWithValue(e)
@@ -42,8 +41,8 @@ export const recipesSlice = createSlice({
         builder.addCase(loadRecipes.fulfilled, (state, action) => {
             state.recipes = action.payload;
         }).addCase(loadRecipesByTag.fulfilled, (state, action) => {
-                state.recipes = action.payload;
-            })
+            state.recipes = action.payload;
+        })
 });
 
 export const recipesSliceActions = {...recipesSlice.actions, loadRecipes, loadRecipesByTag};

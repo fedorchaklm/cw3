@@ -21,14 +21,11 @@ export const UsersList: FC = () => {
     const onSubmit = (searchData: searchDataType) => {
         console.log('>', searchData);
         setQuery({q: searchData.search, page: '1'});
-        // dispatch(usersSliceActions.loadUsersBySearchParam(searchData.search));
     };
 
     useEffect(() => {
         const page = query.get('page') || '1';
-        console.log('>', page);
         const q = query.get('q') || '';
-        console.log('>', q);
         dispatch(usersSliceActions.loadUsers({page: Number(page), searchParam: q}));
     }, [query]);
 

@@ -4,8 +4,6 @@ import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
 export const HomePage = () => {
     const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);
 
-    console.log(currentUser);
-
     return (
         currentUser ?
             <div className='home-page'>

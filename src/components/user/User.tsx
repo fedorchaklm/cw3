@@ -8,7 +8,7 @@ type UserType = {
 };
 
 export const User: FC<UserType> = ({user}) => {
-console.log({userId: user.id});
+
     return (
         <Link to={`/users/${user.id}`} className='user'>
             <p>{user.id} {user.firstName} {user.lastName}</p>

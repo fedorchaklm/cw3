@@ -14,7 +14,6 @@ const loadUserRecipes = createAsyncThunk('userRecipesSlice/loadUserRecipes',
     async (id: string, thunkAPI) => {
         try {
             const recipes = await recipeService.getUserRecipes(id);
-            console.log(recipes);
             return thunkAPI.fulfillWithValue(recipes);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);

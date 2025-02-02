@@ -18,8 +18,6 @@ export const RecipeDetails = () => {
         }
     }, [recipeId, isRecipeLoaded]);
 
-    console.log(recipe)
-
     return (
         !isRecipeLoaded ? <Loading/> :
             <div className='recipe-wrap'>

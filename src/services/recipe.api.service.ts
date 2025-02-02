@@ -6,8 +6,6 @@ import {axiosInstance} from "./api.service.ts";
 export const recipeService = {
     getUserRecipes: async (userId: string): Promise<Array<IRecipe>> => {
         const {data} = await axiosInstance.get<IRecipesResponseModel>('auth/recipes/search?limit=50');
-        console.log(data);
-        console.log(data.recipes.filter((recipe: IRecipe) => recipe.userId === Number(userId)))
         return data.recipes.filter((recipe: IRecipe) => recipe.userId === Number(userId));
     },
     getRecipesByPage: async (page: number, searchParam: string): Promise<IRecipesResponseModel> => {
@@ -31,11 +29,3 @@ export const recipeService = {
         return tags;
     }
 };
-
-// getUsersByPage: async (page: number, searchParam: string): Promise<IUsersResponseModel> => {
-//     const limit = limitOfUsersByPage;
-//     const skip = limit * page - limit;
-//     // const {data} = await axiosInstance.get<IUsersResponseModel>(`/users?skip=${skip}&limit=${limit}`);
-//     const {data} = await axiosInstance.get<IUsersResponseModel>(`/users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
-//     return data;
-// },
