@@ -1,5 +1,5 @@
 .recipe-wrap {
-    @apply flex flex-col gap-4 mx-auto w-fit px-4 text-white text-xl
+    @apply flex flex-col gap-4 mx-auto w-fit px-4 text-white text-xl pb-4;
 }
 
 img {

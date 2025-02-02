@@ -8,6 +8,7 @@ type RecipeType = {
 };
 
 export const Recipe: FC<RecipeType> = ({recipe}) => {
+
     return (
         <Link to={`/recipes/${recipe.id}`} className='recipe'>
             <p>{recipe.name}</p>

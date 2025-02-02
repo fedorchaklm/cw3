@@ -18,11 +18,13 @@ export const RecipeDetails = () => {
         }
     }, [recipeId, isRecipeLoaded]);
 
+    console.log(recipe)
+
     return (
         !isRecipeLoaded ? <Loading/> :
             <div className='recipe-wrap'>
                 <h1 className='text-3xl self-center'>{recipe.name}</h1>
-                <img className='self-center' src={recipe.image} alt={recipe.name}/>
+                <img className='self-center min-w-20' src={recipe.image} alt={recipe.name}/>
                 <p><b>CookTimeMinutes: </b>{recipe.cookTimeMinutes} min</p>
                 <p><b>PrepTimeMinutes: </b>{recipe.prepTimeMinutes} min</p>
                 <p><b>Calories: </b>{recipe.caloriesPerServing}</p>
