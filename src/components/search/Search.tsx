@@ -1,21 +1,21 @@
-import './Search.css';
 import {useForm} from "react-hook-form";
 import {FC} from "react";
+import './Search.css';
 
-type searchDataType = {
+type SearchDataType = {
     search: string
 };
 
 type SearchType = {
-    onSubmit: (searchData: searchDataType) => void;
+    onSubmit: (searchData: SearchDataType) => void;
 };
 
 export const Search: FC<SearchType> = ({onSubmit}) => {
-    const {register, handleSubmit, reset} = useForm<searchDataType>({
+    const {register, handleSubmit, reset} = useForm<SearchDataType>({
         mode: 'all'
     });
 
-    const submit = (searchData: searchDataType) => {
+    const submit = (searchData: SearchDataType) => {
         onSubmit(searchData);
         reset();
     };

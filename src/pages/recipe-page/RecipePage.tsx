@@ -1,7 +1,8 @@
 import {RecipeDetails} from "../../components/recipe-details/RecipeDetails.tsx";
+import {FC} from "react";
 import  './RecipePage.css';
 
-export const RecipePage = () => {
+export const RecipePage: FC = () => {
 
     return (
         <div className='recipe-page'>

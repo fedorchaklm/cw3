@@ -8,12 +8,12 @@ import {limitOfRecipesPage} from "../../constants/constants.ts";
 import {Recipe} from "../recipe/Recipe.tsx";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {useSearchParams} from "react-router";
-// import {recipesSliceActions} from "../../redux/recipes-slice/recipesSlice.ts";
 import {TagsList} from "../tags-list/TagsList.tsx";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
-import {searchDataType} from "../../models/searchDataType.ts";
+import {searchDataType} from "../../models/SearchDataType.ts";
 import {recipeSliceActions} from "../../redux/recipe-slice/recipeSlice.ts";
+import './RecipesList.css';
 
 export const RecipesList: FC = () => {
     const {recipes} = useAppSelector(({recipeSlice}) => recipeSlice);
@@ -25,11 +25,8 @@ export const RecipesList: FC = () => {
 
     useEffect(() => {
         const page = query.get('page') || '1';
-        console.log('>', page);
         const q = query.get('q') || '';
-        console.log('>', q);
         if (tag) {
-            console.log(tag);
             dispatch(recipeSliceActions.loadRecipesByTag({tag, page: Number(page)}));
         } else {
             dispatch(recipeSliceActions.loadRecipes({page: Number(page), searchParam: q}));
@@ -42,11 +39,11 @@ export const RecipesList: FC = () => {
 
     return (
         recipes === null ? <Loading/> :
-            <div className='flex flex-col items-center gap-2 py-4 text-xl w-full'>
+            <div className='recipe-list-container'>
                 <Search onSubmit={onSubmit}/>
                 {recipes.recipes.length > 0 ?
-                    <div className='flex flex-col items-center gap-2 my-4'>
-                        <h1 className='text-3xl text-white'>Recipes:</h1>
+                    <div className='recipe-list'>
+                        <h1 className='recipe-title'>Recipes:</h1>
                         {recipes.recipes.map((recipe: IRecipe) => <Recipe key={recipe.id} recipe={recipe}/>)}
                         <Pagination maxPages={getMaxPages(recipes.total, limitOfRecipesPage)}/>
                         <TagsList/>

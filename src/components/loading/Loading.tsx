@@ -1,4 +1,6 @@
-export const Loading = () => {
+import {FC} from "react";
+
+export const Loading: FC = () => {
     return (
         <div className='flex justify-center items-center'>
             <div role="status">
@@ -15,5 +17,5 @@ export const Loading = () => {
             </div>
 
         </div>
-    )
+    );
 }

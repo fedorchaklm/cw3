@@ -1,7 +1,7 @@
 import {Link} from "react-router";
-import './Menu.css';
 import {useAppSelector} from "../../redux/hooks/useAppSelector.ts";
 import {Logo} from "../logo/Logo.tsx";
+import './Menu.css';
 
 export const Menu = () => {
     const {currentUser} = useAppSelector(({currentUserSlice}) => currentUserSlice);

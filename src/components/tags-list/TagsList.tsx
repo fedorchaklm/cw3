@@ -4,6 +4,7 @@ import {useAppDispatch} from "../../redux/hooks/useAppDispatch.ts";
 import {useEffect} from "react";
 import {tagsSliceActions} from "../../redux/tags-slice/tagsSlice.ts";
 import {Tag} from "../tag/Tag.tsx";
+import './TagList.css';
 
 export const TagsList = () => {
     const {tags} = useAppSelector(({tagsSlice}) => tagsSlice)
@@ -15,7 +16,7 @@ export const TagsList = () => {
 
     return (
         tags === null ? <Loading/> :
-            <div className='flex flex-wrap gap-1 px-2'>
+            <div className='tag'>
                 {tags.map((tag: string) => <Tag key={tag} tag={tag}/>)}
             </div>
     );

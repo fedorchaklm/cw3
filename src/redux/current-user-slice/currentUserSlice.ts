@@ -1,18 +1,15 @@
-import {createAsyncThunk, createSlice, isRejected, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IUserWithTokens} from "../../models/IUserWithTokens.ts";
 import {LoginDataType} from "../../models/LoginDataType.ts";
 import {authService} from "../../services/auth.api.service.ts";
 import {retrieveLocalStorage} from "../../helpers/localStorageHelpers.ts";
-import {AxiosError} from "axios";
 
 type currentUserSliceType = {
     currentUser: IUserWithTokens | null | undefined;
-    error: string | null;
 };
 
 const currentUserSliceInitialState: currentUserSliceType = {
     currentUser: retrieveLocalStorage<IUserWithTokens>('user'),
-    error: null
 };
 
 const loadUser = createAsyncThunk('currentUserSlice/loadUser',
@@ -31,9 +28,6 @@ const refreshToken = createAsyncThunk('currentUserSlice/refreshToken',
             const user = await authService.refreshToken();
             return thunkAPI.fulfillWithValue(user);
         } catch (e) {
-            if (e instanceof AxiosError) {
-                return thunkAPI.rejectWithValue(e.response?.statusText);
-            }
             return thunkAPI.rejectWithValue(e);
         }
     });
@@ -47,8 +41,6 @@ export const currentUserSlice = createSlice({
             state.currentUser = action.payload;
         }).addCase(refreshToken.fulfilled, (state, action) => {
             state.currentUser = action.payload;
-        }).addMatcher(isRejected(loadUser, refreshToken), (state, action) => {
-            state.error = action.payload as string;
         })
 });
 

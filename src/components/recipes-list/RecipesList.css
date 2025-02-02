@@ -1,0 +1,11 @@
+.recipe-list-container {
+    @apply flex flex-col items-center gap-2 py-4 text-xl w-full;
+}
+
+.recipe-list {
+    @apply flex flex-col items-center gap-2 my-4;
+}
+
+.recipe-title {
+    @apply text-3xl text-white;
+}

@@ -1,5 +1,7 @@
 .home-page {
     @apply text-white text-3xl flex flex-col items-center gap-8 px-4 mt-20 max-w-xl text-center;
-    /*min-height: calc(100vh - 3rem);*/
 }
 
+.info {
+    @apply my-40 bg-white text-black text-3xl px-4 py-4 rounded-xl text-center;
+}

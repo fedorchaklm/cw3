@@ -25,7 +25,6 @@ export const authService = {
             userWithTokens.accessToken = accessToken;
             userWithTokens.refreshToken = refreshToken;
             saveToLocalStorage('user', userWithTokens);
-            console.log(userWithTokens);
             return userWithTokens;
         }
     }

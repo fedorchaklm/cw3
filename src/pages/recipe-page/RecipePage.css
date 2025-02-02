@@ -1,5 +1,4 @@
 .recipe-page {
-    /*@apply bg-[url(/assets/cake.jpg)] bg-center bg-cover bg-fixed;*/
     @apply bg-black;
     min-height: calc(100vh - 48px);
 }

@@ -10,8 +10,9 @@ import {Loading} from "../loading/Loading.tsx";
 import {limitOfUsersByPage} from "../../constants/constants.ts";
 import {Search} from "../search/Search.tsx";
 import {NotFound} from "../not-found/NotFound.tsx";
-import {searchDataType} from "../../models/searchDataType.ts";
+import {searchDataType} from "../../models/SearchDataType.ts";
 import {userSliceActions} from "../../redux/user-slice/userSlice.ts";
+import './UserList.css';
 
 export const UsersList: FC = () => {
     const {users} = useAppSelector(({userSlice}) => userSlice);
@@ -31,7 +32,7 @@ export const UsersList: FC = () => {
 
     return (
         users === null ? <Loading/> :
-            <div className='flex flex-col items-center gap-2 py-2 w-full text-xl'>
+            <div className='list-wrap'>
                 <Search onSubmit={onSubmit}/>
                 {users && users.users.length > 0 ?
                     <div className='flex flex-col items-center gap-2 my-2 w-1/3'>
