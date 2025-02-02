@@ -15,6 +15,8 @@ export const UserDetails = () => {
     const {userRecipes} = useAppSelector(({userRecipesSlice}) => userRecipesSlice);
     const dispatch = useAppDispatch();
     const isUserLoaded = Number(userId) === user?.id;
+console.log(user, userId)
+    console.log(userRecipes)
 
     useEffect(() => {
         if (userId && !isUserLoaded) {
@@ -24,13 +26,13 @@ export const UserDetails = () => {
     }, [userId, isUserLoaded]);
 
 
-    return !isUserLoaded ? <Loading/> :
-        <div className='flex flex-col items-center justify-center gap-4 w-full text-2xl py-4'>
-            <div className='flex justify-center gap-10'>
+    return  !isUserLoaded ? <Loading/> :
+        <div className='flex flex-col items-center justify-center gap-4 w-full text-xl sm:text-2xl py-4'>
+            <div className='flex flex-col sm:flex-row justify-center gap-10'>
                 <div>
-                    <img className='w-80' src={user.image} alt={user.lastName}/>
+                    <img className='w-80 min-w-20' src={user.image} alt={user.lastName}/>
                 </div>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-4 px-4'>
                     <h1 className='text-3xl'>Information about {user.firstName} {user.lastName}</h1>
                     <p>Username: {user.username}</p>
                     <p>Age: {user.age}</p>

@@ -1,5 +1,5 @@
 .search-container {
-    @apply flex flex-col items-center gap-4;
+    @apply flex flex-col items-center gap-4 mx-4;
 }
 
 .search-form {
